@@ -109,7 +109,7 @@ def mark_attendance(name, face_img=None):
 
     # Known people: log once per day
     if name != "Unknown":
-        display_name = format_name(class_names[matchIndex])
+        display_name = format_name(name)
 
         with open(attendance_file, 'r+') as f:
             DataList = f.readlines()
@@ -201,11 +201,10 @@ while True:
         cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)
         cv2.rectangle(img, (x1, y2 - 35), (x2, y2), color, cv2.FILLED)
         
-        display_name = format_name(classNames[matchIndex])
+        display_name = format_name(name)  
         cv2.putText(img, display_name, (x1 + 6, y2 - 6),
-                    cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+            cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
 
-    # Reset flag if no unknown faces detected in this frame
     if not unknown_detected_this_frame:
         unknown_in_frame = False
 
